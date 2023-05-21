@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../models/post_model.dart';
 import '../widgets/widgets.dart';
 import '../config/palette.dart';
 import '../data/data.dart';
@@ -72,6 +73,17 @@ class HomeScreen extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
             sliver: SliverToBoxAdapter(
               child: Stories(currentUser: currentUser, stories: stories),
+            ),
+          ),
+          SliverList(
+            //  This widget is similar to "ListView.builder" widget
+            //  for Sliver.
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final Post post = posts[index];
+                return PostContainer(post: post);
+              },
+              childCount: posts.length,
             ),
           ),
         ],

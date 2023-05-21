@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 class ProfileAvatar extends StatelessWidget {
   final String imageUrl;
   final bool isActive;
+  final bool hasBorder;
   const ProfileAvatar({
     Key? key,
     required this.imageUrl,
     this.isActive = false,
+    this.hasBorder = false,
   }) : super(key: key);
 
   @override
@@ -17,9 +19,18 @@ class ProfileAvatar extends StatelessWidget {
     return Stack(
       children: [
         CircleAvatar(
+          //  This "CircleAvatar" is used to show blue border
+          //  inside my profile circle avatar on story.
           radius: 20,
-          backgroundColor: Colors.grey[200],
-          backgroundImage: CachedNetworkImageProvider(imageUrl),
+          backgroundColor: Palette.facebookBlue,
+          child: CircleAvatar(
+            //  Below check work in such a way that if "ProfileAvatar" is
+            //  not inside Story then the size of Profile circle is equal
+            //  to border circle size so border blue hides on screen.
+            radius: hasBorder ? 17 : 20,
+            backgroundColor: Colors.grey[200],
+            backgroundImage: CachedNetworkImageProvider(imageUrl),
+          ),
         ),
         isActive
             ? Positioned(
