@@ -6,11 +6,13 @@ class CustomTabBar extends StatelessWidget {
   final List<IconData> icons;
   final int selectedIndex;
   final void Function(int) onTap;
+  final bool isBottomIndicator;
   const CustomTabBar({
     Key? key,
     required this.icons,
     required this.selectedIndex,
     required this.onTap,
+    this.isBottomIndicator = false,
   }) : super(key: key);
 
   @override
@@ -20,13 +22,20 @@ class CustomTabBar extends StatelessWidget {
       //  With following property I'm forcing indicator
       //  to be at top instead of by-default bottom of
       //  each Icon.
-      indicator: const BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: Palette.facebookBlue,
-            width: 3,
-          ),
-        ),
+      indicator: BoxDecoration(
+        border: isBottomIndicator
+            ? const Border(
+                bottom: BorderSide(
+                  color: Palette.facebookBlue,
+                  width: 3,
+                ),
+              )
+            : const Border(
+                top: BorderSide(
+                  color: Palette.facebookBlue,
+                  width: 3,
+                ),
+              ),
       ),
       //  In order to tell which Icon is selected (meaning changes it color
       //  to show it as an active icon). For this, I need to check index of

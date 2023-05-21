@@ -1,3 +1,4 @@
+import 'package:facebook_ui/data/data.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -34,9 +35,21 @@ class _NavScreenState extends State<NavScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
     return DefaultTabController(
       length: _icons.length,
       child: Scaffold(
+        appBar: Responsive.isDesktop(context)
+            ? PreferredSize(
+                preferredSize: Size(screenSize.width, 100),
+                child: CustomAppBar(
+                  currentUser: currentUser,
+                  icons: _icons,
+                  selectedIndex: _selectedIndex,
+                  onTap: (index) => setState(() => _selectedIndex = index),
+                ),
+              )
+            : null,
         // body: _screens[_selectedIndex],
         //  Although by above code i'm able to change the body
         //  according to each tab selected, but instead following
@@ -60,14 +73,17 @@ class _NavScreenState extends State<NavScreen> {
         //  continue scrolling from point where user left, while with
         //  "TabBarView" the screen will be re-rendered & user will be
         //  back to top of screen each time user changes the tabs.
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(bottom: 12),
-          child: CustomTabBar(
-            icons: _icons,
-            selectedIndex: _selectedIndex,
-            onTap: (index) => setState(() => _selectedIndex = index),
-          ),
-        ),
+        bottomNavigationBar: !Responsive.isDesktop(context)
+            ? Container(
+                color: Colors.white,
+                padding: const EdgeInsets.only(bottom: 12),
+                child: CustomTabBar(
+                  icons: _icons,
+                  selectedIndex: _selectedIndex,
+                  onTap: (index) => setState(() => _selectedIndex = index),
+                ),
+              )
+            : const SizedBox.shrink(),
       ),
     );
   }
