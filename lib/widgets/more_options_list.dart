@@ -26,7 +26,7 @@ class MoreOptionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         maxWidth: 280,
       ),
       child: ListView.builder(
@@ -42,7 +42,7 @@ class MoreOptionsList extends StatelessWidget {
           }
           final List option = _moreOptionsList[index - 1];
           return Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: _Option(
               icon: option[0],
               color: option[1],

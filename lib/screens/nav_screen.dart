@@ -14,12 +14,12 @@ class NavScreen extends StatefulWidget {
 
 class _NavScreenState extends State<NavScreen> {
   final List<Widget> _screens = [
-    HomeScreen(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
+    const HomeScreen(),
+    const Scaffold(),
+    const Scaffold(),
+    const Scaffold(),
+    const Scaffold(),
+    const Scaffold(),
   ];
 
   final List<IconData> _icons = const [

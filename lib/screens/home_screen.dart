@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print
 // ignore_for_file: sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
@@ -71,9 +71,9 @@ class _HomeScreenMobile extends StatelessWidget {
         SliverAppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             'facebook',
-            style: const TextStyle(
+            style: TextStyle(
               color: Palette.facebookBlue,
               fontSize: 28,
               fontWeight: FontWeight.bold,
@@ -108,19 +108,19 @@ class _HomeScreenMobile extends StatelessWidget {
         //    (1)  SliverPadding(),
         //    (2)  SliverList(),
         //    (3)  SliverGrid(),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: CreatePostContainer(
             currentUser: currentUser,
           ),
         ),
         SliverPadding(
-          padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
+          padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
           sliver: SliverToBoxAdapter(
             child: Rooms(onlineUsers: onlineUsers),
           ),
         ),
         SliverPadding(
-          padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
           sliver: SliverToBoxAdapter(
             child: Stories(currentUser: currentUser, stories: stories),
           ),
@@ -152,12 +152,12 @@ class _HomeScreenDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Flexible(
+        const Flexible(
           flex: 2,
           child: Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(12),
               child: MoreOptionsList(currentUser: currentUser),
             ),
           ),
@@ -185,13 +185,13 @@ class _HomeScreenDesktop extends StatelessWidget {
               //    (1)  SliverPadding(),
               //    (2)  SliverList(),
               //    (3)  SliverGrid(),
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: CreatePostContainer(
                   currentUser: currentUser,
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
+                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
                 sliver: SliverToBoxAdapter(
                   child: Rooms(onlineUsers: onlineUsers),
                 ),

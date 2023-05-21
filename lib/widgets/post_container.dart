@@ -127,11 +127,11 @@ class _PostStats extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Palette.facebookBlue,
                 shape: BoxShape.circle,
               ),
-              child: Icon(Icons.thumb_up, size: 10, color: Colors.white),
+              child: const Icon(Icons.thumb_up, size: 10, color: Colors.white),
             ),
             const SizedBox(width: 4),
             Expanded(

@@ -15,7 +15,7 @@ class ContactList extends StatelessWidget {
     return Container(
       //  With this Container I'm simply restraining the contacts
       //  list width.
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         maxWidth: 280,
       ),
       child: Column(

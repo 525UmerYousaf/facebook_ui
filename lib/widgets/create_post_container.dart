@@ -1,5 +1,4 @@
 // ignore_for_file: sized_box_for_whitespace, avoid_print
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../models/models.dart';
