@@ -29,21 +29,22 @@ class Stories extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: 1 + stories.length,
         itemBuilder: (BuildContext context, int index) {
+          if (index == 0) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: _StoryCard(
+                //  Below property will help me to know whether I have to
+                //  show plus button or user profile to whom story belongs to
+                isAddStory: true,
+                currentUser: currentUser,
+              ),
+            );
+          }
           final Story story = stories[index - 1];
-          return (index == 0)
-              ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: _StoryCard(
-                    //  Below property will help me to know whether I have to
-                    //  show plus button or user profile to whom story belongs to
-                    isAddStory: true,
-                    currentUser: currentUser,
-                  ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: _StoryCard(story: story),
-                );
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: _StoryCard(story: story),
+          );
         },
       ),
     );

@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:facebook_ui/widgets/profile_avatar.dart';
 
+import '../config/palette.dart';
 import '../models/post_model.dart';
 
 class PostContainer extends StatelessWidget {
@@ -113,11 +115,112 @@ class _PostStats extends StatelessWidget {
         Row(
           children: [
             Container(
-              decoration: BoxDecoration(),
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: Palette.facebookBlue,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.thumb_up, size: 10, color: Colors.white),
+            ),
+            const SizedBox(width: 4),
+            Expanded(
+              //  By wraping like Text inside "Expanded" widget I
+              //  push the comments and shares to all the way toward
+              //  right side of screen.
+              child: Text(
+                '${post.likes}',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                ),
+              ),
+            ),
+            Text(
+              '${post.comments} Comments',
+              style: TextStyle(
+                color: Colors.grey[600],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              '${post.shares} Shares',
+              style: TextStyle(
+                color: Colors.grey[600],
+              ),
+            ),
+          ],
+        ),
+        const Divider(),
+        Row(
+          children: [
+            //  Here, instead of using built-in TextButton i would
+            //  use my own made custom button since built-in one's
+            //  take a lot of un-necessary space by margin & padding.
+            _PostButton(
+              icon: Icon(
+                MdiIcons.thumbUpOutline,
+                color: Colors.grey[600],
+                size: 20,
+              ),
+              label: 'Like',
+              onTap: () => print('Like'),
+            ),
+            _PostButton(
+              icon: Icon(
+                MdiIcons.commentOutline,
+                color: Colors.grey[600],
+                size: 20,
+              ),
+              label: 'Comment',
+              onTap: () => print('Comment'),
+            ),
+            _PostButton(
+              icon: Icon(
+                MdiIcons.shareOutline,
+                color: Colors.grey[600],
+                size: 25,
+              ),
+              label: 'Share',
+              onTap: () => print('Share'),
             ),
           ],
         ),
       ],
+    );
+  }
+}
+
+class _PostButton extends StatelessWidget {
+  final Icon icon;
+  final String label;
+  final Function() onTap;
+  const _PostButton({
+    Key? key,
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Material(
+        color: Colors.white,
+        child: InkWell(
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            height: 25,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                icon,
+                const SizedBox(width: 4),
+                Text(label),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

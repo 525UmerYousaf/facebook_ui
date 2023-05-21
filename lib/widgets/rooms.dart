@@ -22,21 +22,22 @@ class Rooms extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: 1 + onlineUsers.length,
         itemBuilder: (BuildContext context, int index) {
+          if (index == 0) {
+            return const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: _CreateRoomButton(),
+            );
+          }
           //  With below line of code i'm neglecting the zero index
           //  widget bcz at first place the "Create Room" button is present.
           final User user = onlineUsers[index - 1];
-          return (index == 0)
-              ? const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  child: _CreateRoomButton(),
-                )
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: ProfileAvatar(
-                    imageUrl: user.imageUrl,
-                    isActive: true,
-                  ),
-                );
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: ProfileAvatar(
+              imageUrl: user.imageUrl,
+              isActive: true,
+            ),
+          );
         },
       ),
     );
